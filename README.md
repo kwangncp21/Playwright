@@ -43,6 +43,9 @@ npx playwright test --headed
 4. Run specific test
 npx playwright test src/tests/login.spec.js --grep "SearchItem"
 
+!!IMPORTANT NOTE!!
+System(OWASP Juice Shop) will automatically reset user account this will be cause of test failure.
+
 🧑‍💻 Page Object – LoginPage
 The LoginPage class encapsulates actions and locators for the Juice Shop application:
 goto() → Navigate to baseUrl
@@ -50,3 +53,6 @@ fillLoginForm(username, password) → Log in with credentials
 addToCart() → Add Apple Juice to cart and go to checkout
 addNewAddress(Country, Name, MobileNumber, ZIPCode, Address, City) → Add shipping address
 SearchItem(Fruit) → Search for an item by keyword
+
+
+

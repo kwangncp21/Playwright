@@ -20,8 +20,6 @@ export class LoginPage{
         this.locatorSubmitLoginForm = this.page.getByRole('button', { name: 'Login' });
         
         //AddNewAddress
-        // this.locatorCheckOut = this.page.locator('#checkoutButton');
-        // this.locatorCheckOut = this.page.getByRole('button', { name: /Checkout/ });
         this.locatorAddNewAddress = this.page.getByRole('button', { name: 'Add a new address' });
         this.locatorCountry = this.page.getByLabel('Country');
         this.locatorName = this.page.getByLabel('Name');
@@ -42,7 +40,7 @@ export class LoginPage{
 
     async fillLoginForm(username,password){
         await this.locatorWelcomeBanner.click();
-        await this.locatorAccount.click('Account');
+        await this.locatorAccount.click();
         await this.locatorLoginform.click();
         await this.locatorUsername.fill(username);
         await this.locatorPassword.fill(password);
@@ -56,12 +54,19 @@ export class LoginPage{
             .getByRole('button', { name: 'Add to Basket' })
             .click();
         await this.page.getByRole('button', { name: 'Show the shopping cart' }).click();
-        // await page.getByRole('button', { name: /Checkout/ });
         await expect(this.page.locator('#checkoutButton', { hasText: ' Checkout ' })).toBeEnabled();
         await this.page.locator('#checkoutButton', { hasText: ' Checkout ' }).click();
-        // await page.getByRole('button', { name: /Checkout/ }).click();
         
-        // await loginPage.addNewAddress('Thailand','Mary','0862264889','10120','82/98 Bangkuntheain','Bangkok')    //delete
+    }
+
+     async addToCart(itemName){
+        
+       await this.page.locator('mat-card', { hasText: itemName})
+            .getByRole('button', { name: 'Add to Basket' })
+            .click();
+        await this.page.getByRole('button', { name: 'Show the shopping cart' }).click();
+        await expect(this.page.locator('#checkoutButton', { hasText: 'Checkout ' })).toBeEnabled();
+        await this.page.locator('#checkoutButton', { hasText: ' Checkout ' }).click();
     }
 
      async addNewAddress(Country,Name,MobileNumber,ZIPCode,Address,City){
@@ -70,7 +75,6 @@ export class LoginPage{
         await this.locatorCountry.fill(Country);
         await this.locatorName.fill(Name);
 
-        // await this.page.getByLabel('Mobile Number').fill('MobileNumber');
         await this.locatorMobileNum.fill(MobileNumber);
 
         await this.locatorZIPcode.fill(ZIPCode);

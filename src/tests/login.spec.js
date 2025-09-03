@@ -1,7 +1,7 @@
 import {test,expect} from "@playwright/test";
 import {LoginPage} from "../tests/pages/login.page"
 
-test('Add 1 item', async({page}) => {
+test('Test_001_Add 1 item', async({page}) => {
     const loginPage = new LoginPage(page);
 
         await loginPage.goto();
@@ -12,13 +12,13 @@ test('Add 1 item', async({page}) => {
 
         });
 
-        await loginPage.fillLoginForm('kw.nichapa@gmail.com','Demo_001')
-        await loginPage.addToCart()
-        await loginPage.addNewAddress('Thailand','Mary','0862264889','10120','82/98 Bangkuntheain','Bangkok')
+        await loginPage.fillLoginForm('kw.nichapa@gmail.com','Demo_001');
+        await loginPage.addToCart();
+        await loginPage.addNewAddress('Thailand','Mary','0862264889','10120','82/98 Bangkuntheain','Bangkok');
     
 });
 
-test('Add 2 items', async({page}) => {
+test('Test_002_Add 2 items', async({page}) => {
 
     const loginPage = new LoginPage(page);
 
@@ -29,13 +29,14 @@ test('Add 2 items', async({page}) => {
         await dialog.accept();      //close pop-up dialog
 
         });
-        await loginPage.fillLoginForm('kw.nichapa@gmail.com','Demo_001')
-        await loginPage.addToCart()
-        await loginPage.addNewAddress('Thailand','Test_02','0862264889','10120','82/98 Bangkuntheain','Bangkok')
+        await loginPage.fillLoginForm('kw.nichapa@gmail.com','Demo_001');
+        await loginPage.addToCart('Apple Juice');
+        await loginPage.addToCart('Carrot Juice (1000ml)');
+        await loginPage.addNewAddress('Thailand','Test_02','0862264889','10120','82/98 Bangkuntheain','Bangkok');
 
 });
 
-test('SearchItem', async({page}) => {
+test('Test_003_SearchItem', async({page}) => {
 
     const loginPage = new LoginPage(page);
 
@@ -46,7 +47,7 @@ test('SearchItem', async({page}) => {
         await dialog.accept();      //close pop-up dialog
 
         });
-        await loginPage.fillLoginForm('kw.nichapa@gmail.com','Demo_001')
-        await loginPage.SearchItem('apple')
+        await loginPage.fillLoginForm('kw.nichapa@gmail.com','Demo_001');
+        await loginPage.SearchItem('apple');
 
 });
